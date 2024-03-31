@@ -3,8 +3,9 @@
 ### Add .env.local
 
 Create a file named .env.local and add the variables
-NEXTAUTH_GOOGLE_CLIENT_ID="yourGoogleClientID"
-NEXTAUTH_GOOGLE_CLIENT_SECRET="yourGoogleClientSecret"
+
+- NEXTAUTH_GOOGLE_CLIENT_ID="yourGoogleClientID"
+- NEXTAUTH_GOOGLE_CLIENT_SECRET="yourGoogleClientSecret"
 
 if you don't have Google 0Auth credentials yet:
 
