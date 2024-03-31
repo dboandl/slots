@@ -17,11 +17,14 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       authorize(credentials) {
+        console.log("credentials provider: ", credentials);
         if (!credentials) return null;
-        // TODO @Chris: database operations to verify credentials
+        // TODO @Chris: database operations to verify credentials, currently all credentials are valid
+        console.log("credentials valid");
+
         return {
-          id: "1",
-          Email: credentials.email,
+          id: "asdf",
+          email: credentials.email,
         };
 
         /*example: 
@@ -37,6 +40,19 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    async signIn({ user, profile }) {
+      console.log("signIn callback");
+      if (profile) {
+        console.log("hello profile: ", profile.email);
+        return true; // Do different verification for other providers that don't have `email_verified`
+      } else if (user) {
+        console.log("hello email: ", user.email);
+        return true; // Do different verification for other providers that don't have `email_verified`
+      }
+      return false;
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
