@@ -1,3 +1,4 @@
+import { NavBar } from "@/components/NavBar";
 import NextAuthSessionProvider from "@/providers/NextAuthSessionProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -18,7 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+        <NextAuthSessionProvider>
+          <NavBar />
+          {children}
+        </NextAuthSessionProvider>
       </body>
     </html>
   );
