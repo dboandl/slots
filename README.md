@@ -2,7 +2,6 @@
 
 ### Add .env.local
 
-TEST
 Create a file named **.env.local** and add the variables
 
 - NEXTAUTH_GOOGLE_CLIENT_ID="yourGoogleClientID"
