@@ -3,15 +3,20 @@
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useCallback, useState } from "react";
 
 const navigation = [
-  { name: "NavItem1", href: "#" },
-  { name: "NavItem2", href: "#" },
+  { i18nKey: "overview", href: "/" },
+  { i18nKey: "events", href: "/events" },
+  { i18nKey: "profile", href: "/profile" },
 ];
 
 export const NavBar = () => {
+  const locale = useLocale();
+  const t = useTranslations("General");
+
   const { data: session, status } = useSession();
 
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -51,8 +56,12 @@ export const NavBar = () => {
       return (
         <>
           {navigation.map((item) => (
-            <Link key={item.name} href={item.href} className={itemClassName}>
-              {item.name}
+            <Link
+              key={item.i18nKey}
+              href={`/${locale ?? "en"}${item.href}`}
+              className={itemClassName}
+            >
+              {t(item.i18nKey)}
             </Link>
           ))}
         </>
@@ -85,8 +94,8 @@ export const NavBar = () => {
 
     return (
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8"
-        aria-label="Global"
+        className="flex items-center justify-between gap-x-6 py-6"
+        aria-label="Navigation"
       >
         <div className="flex lg:flex-1">
           <span className="py-2">SlotFinder</span>
