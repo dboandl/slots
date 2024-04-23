@@ -1,6 +1,8 @@
-"use client";
+import { useTranslations } from "next-intl";
 
-export default function Home() {
+export default function RootPage() {
+  const t = useTranslations("General");
+  return <h1>{t("overview")}</h1>;
   //  const { data: session } = useSession();
   // return (
   //   <main className="flex min-h-screen flex-col items-center justify-between p-24">
