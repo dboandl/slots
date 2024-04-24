@@ -2,6 +2,7 @@ import { NavBar } from "@/components/NavBar";
 import NextAuthSessionProvider from "@/providers/NextAuthSessionProvider";
 import type { Metadata } from "next";
 import { NextIntlClientProvider, useMessages } from "next-intl";
+import { unstable_setRequestLocale } from "next-intl/server";
 import { Inter } from "next/font/google";
 import "../globals.css";
 
@@ -25,6 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }>) {
+  unstable_setRequestLocale(locale);
   const messages = useMessages();
 
   return (

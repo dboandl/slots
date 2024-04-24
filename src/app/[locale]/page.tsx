@@ -1,6 +1,12 @@
 import { useTranslations } from "next-intl";
+import { unstable_setRequestLocale } from "next-intl/server";
 
-export default function RootPage() {
+export default function RootPage({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  unstable_setRequestLocale(locale);
   const t = useTranslations("General");
   return <h1>{t("overview")}</h1>;
   //  const { data: session } = useSession();

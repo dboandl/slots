@@ -3,7 +3,11 @@
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 
-export default function EventsPage() {
+export default function EventsPage({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
   const t = useTranslations("General");
   const { data: session } = useSession();
   return (
